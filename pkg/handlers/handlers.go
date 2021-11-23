@@ -1,7 +1,9 @@
 package handlers
 
 import (
+	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/trcwrx78/bookings/pkg/config"
@@ -72,7 +74,7 @@ func(m *Repository) Availability(w http.ResponseWriter, r *http.Request) {
 	render.RenderTemplate(w, r, "search-availabilty.page.tmpl", &models.TemplateData{})
 }
 
-// Renders the search availabilty page
+// Handles a post to the search-availability
 func(m *Repository) PostAvailability(w http.ResponseWriter, r *http.Request) {
 	start := r.Form.Get("start")
 	end := r.Form.Get("end")
@@ -80,6 +82,27 @@ func(m *Repository) PostAvailability(w http.ResponseWriter, r *http.Request) {
 
 
 	w.Write([]byte(fmt.Sprintf("start date is %s and end date is %s", start, end)))
+}
+
+type jsonResponse struct {
+	OK bool `json:"ok"`
+	Message string `json:"message"`
+	
+}
+// Handles request for avaialbility and send JSON response
+func(m *Repository) AvailabilityJSON(w http.ResponseWriter, r *http.Request) {
+	resp := jsonResponse{
+		OK: false,
+		Message: "Available!",
+	}
+
+	out, err := json.MarshalIndent(resp, "", "     ")
+	if err != nil {
+		log.Println(err)
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(out)
 }
 
 // Renders the search availabilty page
