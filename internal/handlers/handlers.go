@@ -6,9 +6,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/trcwrx78/bookings/pkg/config"
-	"github.com/trcwrx78/bookings/pkg/models"
-	"github.com/trcwrx78/bookings/pkg/render"
+	"github.com/trcwrx78/bookings/internal/config"
+	"github.com/trcwrx78/bookings/internal/models"
+	"github.com/trcwrx78/bookings/internal/render"
 )
 
 // The repository used by our handlers
