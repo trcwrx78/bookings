@@ -134,15 +134,15 @@
           })
         }
 
-        {{ with .Error}}
+        {{ with .Error }}
         notify("{{ . }}", "error")
         {{ end }}
 
-        {{ with .Flash}}
+        {{ with .Flash }}
         notify("{{ . }}", "success")
         {{ end }}
 
-        {{ with .Warning}}
+        {{ with .Warning }}
         notify("{{ . }}", "warning")
         {{ end }}
   
