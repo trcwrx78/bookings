@@ -22,7 +22,7 @@
       type="text/css"
       href="https://unpkg.com/notie/dist/notie.min.css"
     />
-    <link rel="stylesheet" type="text/css" href="./static/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css" />
 
     <title>Bookings</title>
   </head>
@@ -79,6 +79,13 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              {{if eq .IsAuthenticated 1}}
+                <a class="nav-link" href="/user/logout">Logout</a>
+              {{else}}
+                <a class="nav-link" href="/user/login">Login</a>
+              {{end}}
             </li>
           </ul>
         </div>
